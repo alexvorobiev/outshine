@@ -711,7 +711,9 @@ top-level heading first."
     (setq outline-promotion-headings
           (outshine-make-promotion-headings-list 8)))
   (when outshine-startup-folded
-    (outline-hide-sublevels 1)))
+    (condition-case error-data
+        (outline-hide-sublevels 1)
+      ('error (message "No outline structure detected")))))
 
 ;; ;; add this to your .emacs
 ;; (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
